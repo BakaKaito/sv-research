@@ -39,9 +39,6 @@ public slots:
     void on_parameterChangeRequested(EncounterEntry entry, int32_t species);
 
 private:
-    static const uint64_t MaxSeeds = 100000000ULL;
-    static const uint64_t SeedCountWarningThreshold = 100000;
-
     struct StarsRange
     {
         uint8_t min_stars;

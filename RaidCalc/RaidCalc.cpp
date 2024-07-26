@@ -237,21 +237,6 @@ void RaidCalc::on_buttonFindSeeds_clicked()
     finder.item_filters_active = ui.checkboxItemFilters->isChecked();
     finder.drop_threshold = ui.spinBoxMinItemsSum->value();
     itemFilters->update_seed_finder(finder);
-    if (!finder.use_filters())
-    {
-        uint64_t seed_count = finder.max_seed - finder.min_seed + 1ULL;
-        if (seed_count > MaxSeeds)
-        {
-            QMessageBox::critical(this, "Error", QString("No filters set. Search aborted because it would exceed maximum allowed number of results (%1).").arg(MaxSeeds));
-            return;
-        }
-        if (seed_count > SeedCountWarningThreshold)
-        {
-            auto result = QMessageBox::question(this, "Warning", "No filters set, this may result in a huge result set. Do you want to continue anyway?");
-            if (result != QMessageBox::Yes)
-                return;
-        }
-    }
     toggle_ui(false);
     if (!finder.find_seeds())
     {
